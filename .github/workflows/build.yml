@@ -1,18 +1,10 @@
 name: Docker
 on: 
   workflow_dispatch:
-     inputs:
-      environment:
-        description: Environemnt
-        required: true
-        type: choice
-        default: 'UAT'
-  
 
 jobs:
   build:
     runs-on: ubuntu-22.04
-    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
