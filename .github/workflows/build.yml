@@ -21,16 +21,16 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.OIDC_ARN }}
-          aws-region: ${{ env.REGION }}
+          aws-region: ${{ secrets.REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build Docker image
-        if: ${{ env.ECR_REPO && env.ECR_ACCOUNT && env.REGION }}
-        run: docker-build ECR_ACCOUNT=${{ env.ECR_ACCOUNT }} AWS_REGION=${{ env.REGION }} ECR_REPO=${{ env.ECR_REPO }}
+        if: ${{ secrets.ECR_REPO && secrets.ECR_ACCOUNT && secrets.REGION }}
+        run: docker-build ECR_ACCOUNT=${{ secrets.ECR_ACCOUNT }} AWS_REGION=${{ secrets.REGION }} ECR_REPO=${{ secrets.ECR_REPO }}
 
       - name: Push Docker image to ECR
-        if: ${{ env.ECR_REPO && env.ECR_ACCOUNT && env.REGION }}
-        run: docker-build ECR_ACCOUNT=${{ env.ECR_ACCOUNT }} AWS_REGION=${{ env.REGION }} ECR_REPO=${{ env.ECR_REPO }}
+        if: ${{ secrets.ECR_REPO && secrets.ECR_ACCOUNT && secrets.REGION }}
+        run: docker-build ECR_ACCOUNT=${{ secrets.ECR_ACCOUNT }} AWS_REGION=${{ secrets.REGION }} ECR_REPO=${{ secrets.ECR_REPO }}
