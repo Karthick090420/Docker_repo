@@ -1,10 +1,7 @@
 name: Docker
 on: 
   workflow_dispatch:
-
-env:
-  REGION: us-east-1
-  ECR_REPOSITORY: my-app 
+  
 
 jobs:
   build:
