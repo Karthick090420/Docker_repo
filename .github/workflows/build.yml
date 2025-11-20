@@ -16,7 +16,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.OIDC_ARN }}
-          aws-region: ${{ secrets.REGION }}
+          aws-region: ${{ vars.REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
